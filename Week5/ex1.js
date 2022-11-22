@@ -14,3 +14,10 @@ let order = [{
     "Qty": [2, 3, 1],
     "Price": [130, 300, 250]
 }]
+for ( i = 0; i < order.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < order[i].ItemOrder.length; j++) {
+        sum += order[i].Qty[j] * order[i].Price[j];
+    }
+    console.log(order[i].Customer, sum);
+}
