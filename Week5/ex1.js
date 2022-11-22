@@ -1,8 +1,16 @@
-let items ={
-    "A4paper":120,
-    "Ruler":25,
-    "FlashDrive":130
-}
-console.log("Mr. Lee",items.A4paper*5 +items.Ruler*2)
-console.log("Mr. Yue",items.FlashDrive*2 +items.A4paper*3)
-console.log("Ms.fah ",items.FlashDrive*2 +items.A4paper*2)
+let order = [{
+    "Customer": "Mr.lee",
+    "ItemOrder": ["A4 Paper", "Ruler"],
+    "Qty": [5, 2],
+    "Price": [120, 25]
+}, {
+    "Customer": "Mr.Yue",
+    "ItemOrder": ["Flash Drive", "A4 Paper"],
+    "Qty": [2, 3],
+    "Price": [130, 120]
+}, {
+    "Customer": "Ms. fah",
+    "ItemOrder": ["Flash Drive", "VGA card", "SSD"],
+    "Qty": [2, 3, 1],
+    "Price": [130, 300, 250]
+}]
