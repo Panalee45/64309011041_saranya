@@ -27,8 +27,9 @@
         xhttp.send();
         xhttp.onload = function(){
             let obj = JSON.parse(this.responseText);
-            let temp = '<tr><td>'+obj[i].title+'</tr></td>'
-            document.getElementById('display').innerHTML = '<table>'+temp+'</table>'
+            temp = '<tr><td><h2>' + obj[i].title + '</h2><br>'+obj[i].description+'</td>'+
+            '<td><img src="./img/'+obj[i].picture+'"width="150px"></td>' + '</tr>';
+            document.getElementById('display').innerHTML = '<table class="table">' + temp + '</table>';
         }
     }
     function next(){
