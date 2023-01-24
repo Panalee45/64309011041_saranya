@@ -36,24 +36,7 @@
                 let dataMap = [];
                 dataMap[0] = ['Provinces','Total'];
                 for(i=1;i<78;i++){
-                    dataMap[i] = [data[i]['CC-DESC'],data[i]['TOTAL']];
-                    //data[i].CC-DESC
-                    //data[i].['CC-DESC']
-                }
-                console.log(dataMap);
-              
-            });
-    }
-
-        fetch('https://jirawatchk.github.io/api.json')
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-               // console.log(data[1]);
-                let dataMap = [];
-                dataMap[0] = ['Provinces','Total'];
-                for(i=1;i<78;i++){
-                    dataMap[i] = [data[i]['CC-DESC'],data[i]['TOTAL']];
+                  dataMap[i] = [data[i]['CC-DESC'],parseInt(data[i]['TOTAL'].replace(/,/g,''))];
                     //data[i].CC-DESC
                     //data[i].['CC-DESC']
                 }
@@ -68,7 +51,7 @@
                
 
             });
-            
+          }          
 
     </script>
     
