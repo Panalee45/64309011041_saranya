@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <title>Title</title>
     <!-- Required meta tags -->
@@ -22,119 +21,117 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
 </head>
 
-<body>
-    <div class="container">
+<body style="background-color: #c8c8c8;">
+
+    <div class="container" style="background-color: white; padding: 3%;">
 
         <form id="myForm">
             <div class="row">
-                <div class="col-9">
+                <div class="col-8">
                     <label>Movie Name</label>
-                    <input type="text" class="form-control" id="movieName">
+                    <input type="text" class="form-control" id="movieName" placeholder="ชื่อหนัง">
                 </div>
-                <div class="col">
+                <div class="col-4">
                     <label>Movie Length</label>
-                    <input type="text" class="form-control" id="movieLength">
+                    <input type="number" class="form-control" id="movieLength" placeholder="ความยาวหนัง/นาที">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label>Director</label>
-                    <input type="text" class="form-control" id="director">
+                    <input type="text" class="form-control" id="director" placeholder="ผู้กำกับ">
                 </div>
                 <div class="col">
                     <label>Category</label>
-                    <input type="text" class="form-control" id="category">
+                    <input type="text" class="form-control" id="category" placeholder="ประเภทหนัง">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label>Picture</label>
-                    <input type="text" class="form-control" id="picture">
+                    <input type="text" class="form-control" id="picture" placeholder="ภาพหน้าปกหนัง">
                 </div>
                 <div class="col">
                     <label>Trailer</label>
-                    <input type="text" class="form-control" id="trailer">
+                    <input type="text" class="form-control" id="trailer" placeholder="วิดีโอตัวอย่าง">
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label>Review</label>
-                    <textarea id="review" class="form-control"></textarea>
+                    <textarea class="form-control" id="review" placeholder="รีวิว"></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     <label>Screen Play</label>
-                    <input type="text" class="form-control" id="screenplay">
+                    <input type="number" class="form-control" id="screenPlay">
                 </div>
                 <div class="col">
                     <label>Playing</label>
-                    <input type="text" class="form-control" id="playing">
+                    <input type="number" class="form-control" id="playing">
                 </div>
                 <div class="col">
                     <label>Music</label>
-                    <input type="text" class="form-control" id="music">
+                    <input type="number" class="form-control" id="music">
                 </div>
                 <div class="col">
                     <label>Actor Skills</label>
-                    <input type="text" class="form-control" id="actorskills">
+                    <input type="number" class="form-control" id="actorSkills">
                 </div>
                 <div class="col">
-                    <label>Graphic</label>
-                    <input type="text" class="form-control" id="graphic">
+                    <label>Graphics</label>
+                    <input type="number" class="form-control" id="graphics">
                 </div>
-
+            </div>
+            <br>
+            <div class="row" align="center">
+                <div class="col">
+                    <input class="btn btn-success" type="button" value="Submit" onclick="add()">
+                    <input class="btn btn-secondary" type="button" value="Cancel">
+                </div>
             </div>
         </form>
-        <div class="row">
-            <div class="col">
-                <input class="btn btn-success" type="button" value="Submit" onclick="add()">
-        </div>
-        
     </div>
-<body style="background-color: #f5f5f8;">
-    <div class="container" style="background-color: white; padding: 3%;">
-    <form d="myForm">
-    </form>
-</div>
-<script>
-    function add(){
-    let obj ={
-        "id":"",
-        "movieName": document.forms['myForm']['movieName'].value,
-        "movieLength": document.forms['myForm']['movieLength'].value,
-        "director": document.forms['myForm']['director'].value,
-        "category": document.forms['myForm']['category'].value,
-        "picture": document.forms['myForm']['picture'].value,
-        "trailer": document.forms['myForm']['trailer'].value,
-        "review":{
-            "review": document.forms['myForm']['review'].value,
-            "score": {
-                    "screenPlay": document.forms['myForm']['screenPlay'],
-                    "playing": document.forms['myForm']['playing'].value,
-                    "music": document.forms['myForm']['music'].value,
-                    "actorSkills": document.forms['myForm']['actorSkills'],
-                    "graphics": document.forms['myForm']['graphics'],
-                    "average": document.forms['myForm']['average'],
-            }
+
+    <script>
+        function add() {
+            let obj = {
+                "id": "",
+                "movieName": document.forms['myForm']['movieName'].value,
+                "movieLength": document.forms['myForm']['movieLength'].value,
+                "director": document.forms['myForm']['director'].value,
+                "category": document.forms['myForm']['category'].value,
+                "picture": document.forms['myForm']['picture'].value,
+                "trailer": document.forms['myForm']['trailer'].value,
+                "review":{
+                    "review": document.forms['myForm']['review'].value,
+                    "score":{
+                        "screenPlay": document.forms['myForm']['screenPlay'].value,
+                        "playing": document.forms['myForm']['playing'].value,
+                        "music": document.forms['myForm']['music'].value,
+                        "actorSkills": document.forms['myForm']['actorSkills'].value,
+                        "graphics": document.forms['myForm']['graphics'].value,
+                        "average": null
+                    }
+                }
+            };
+
+            console.log(obj);
+
+            let text = JSON.stringify(obj);
+            console.log("HelloText",text);
+
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("POST","http://localhost:3000/movieReview");
+            xhttp.setRequestHeader("Contevt-Type","application/json");
+            xhttp.send(text);
+
         }
+    </script>
 
-    };
-
-    console.log(obj);
-    let text = JSON.stringify(obj);
-    console.log("นี่เป็นข้อความ",text);
-
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("POST","http://localhost:3000/movieReview");
-    xhttp.setRequestHeader("Content-Type","application/json");
-    xhttp.send(text);
-
-}
-</script>
 </body>
-</body>
-
 </html>
