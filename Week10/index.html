@@ -1,48 +1,69 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    
+
+<head>
     <title>Title</title>
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-   
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 </head>
-  <body>
+
+<body>
     <div class="container" id="display">
 
     </div>
-      <script>
+
+    <script>
         let xhttp = new XMLHttpRequest();
-        xhttp.open("GET","http://localhost:3000/movieReview");
+        xhttp.open("GET", "http://localhost:3000/movieReview");
         xhttp.send();
-        xhttp.onload = function(){
-            //console.log(this.responseText);
-  let temp = '';
-  let i = 0;
-  let obj = JSON.parse(this.responseText);
-  for (i=0;i<obj.length;i++){
-    temp +='<tr><td class="table-dark"><h3>'+obj[i].movieName+'<br></h3>'
-      
-      +"ความยาวหนัง"+obj[i].movieLength+'<br>'
-      +"ผู้กับกับ"+obj[i].director+'<br>'
-      +"แนวหนัง"+obj[i].category+'<br>'
-      +"รีวิว"+obj[i].review.review+'<br>'
-      +'<iframe src="' + obj[i].trailer + ' "height="400px"width="800px"></iframe>'
-     
-     
-      +'<td class="table-info"><img src=" '+obj[i].picture+'"width="300px"></td>' + '</tr>';
-  }
-  document.getElementById('display').innerHTML= '<table class = "table">'+temp+'</table>' ;  
-      
+        xhttp.onload = function () {
+
+            //console.log(this.responseText); //ถ้ามีการตอบกลับมาจากเซิร์ฟเวอร์ ที่ส่งมาจะเป็นข้อความ
+            let temp = '';
+            let i = 0;
+            let obj = JSON.parse(this.responseText);
+            for (i = 0; i < obj.length; i++) {
+                //console.log(obj[i]);
+                temp += '<tr>'
+                    + '<td>'
+                    + '<h2>' + obj[i].movieName + '</h2>'
+                    + "<b>ความยาวหนัง </b> " + obj[i].movieLength + " นาที" + "&nbsp&nbsp&nbsp&nbsp&nbsp" //+ '<br>'
+                    + "<b>หมวดหมู่ </b> " + obj[i].category + "&nbsp&nbsp&nbsp&nbsp&nbsp"//+ '<br>'
+                    + "<b>ผู้กำกับ </b>" + obj[i].director + '<br><br>'
+
+                    + '<img width=25% src=' + obj[i].picture + '>' + '<br><br>'
+                    + '<iframe width=560 height=315 src=https://www.youtube.com/embed/' + obj[i].trailer + '></iframe><br><br>'
+
+                    + '<h2>รีวิว</h2>' + obj[i].review.review + '<br><br>'
+
+                    + '<h2>สรุปคะแนน</h2>'
+                    + '<b>บทหนัง </b>' + obj[i].review.score.screenPlay + "&nbsp&nbsp&nbsp&nbsp&nbsp"
+                    + '<b>การดำเนินเรื่อง </b>' + obj[i].review.score.playing + "&nbsp&nbsp&nbsp&nbsp&nbsp"
+                    + '<b>ดนตรีประกอบ </b>' + obj[i].review.score.music + "&nbsp&nbsp&nbsp&nbsp&nbsp"
+                    + '<b>ฝีมือนักแสดง </b>' + obj[i].review.score.actorSkills + "&nbsp&nbsp&nbsp&nbsp&nbsp"
+                    + '<b>กราฟฟิก </b>' + obj[i].review.score.graphics + "&nbsp&nbsp&nbsp&nbsp&nbsp"
+                    + '<b>คะแนนเฉลี่ย </b>' + obj[i].review.score.average + "&nbsp&nbsp&nbsp&nbsp&nbsp"
+                    + '<hr color="black"><br>'
+                    + '</td>'
+                    + '</tr>'; //เก็บข้อมูลจาก json เป็น obj   
+            }
+
+            document.getElementById('display').innerHTML = '<table class="table">' + temp + '</table>';
         }
-      </script>
-   
-    
-  </body>
+    </script>
+
+</body>
+
 </html>
